@@ -9,13 +9,15 @@ export class TimelineEvent {
   category!: EventLevel;
 
   constructor(row: RawEventRowValues) {
-    const cat_string: string = row.category;
-    const type_cat: EventLevel =
-      EventLevel[cat_string as unknown as keyof typeof EventLevel];
+    const { category, start, end, info, title } = { ...row };
+    const categoryString: string = category;
+    const eventLevelEnum: EventLevel =
+      EventLevel[categoryString as unknown as keyof typeof EventLevel];
 
-    this.start = new Date(row.start);
-    this.end = new Date(row.end);
-    this.info = row.info;
-    this.category = type_cat;
+    this.start = new Date(start);
+    this.end = new Date(end);
+    this.info = info;
+    this.category = eventLevelEnum;
+    this.title = title;
   }
 }

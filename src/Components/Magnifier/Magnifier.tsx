@@ -235,18 +235,7 @@ export default class Magnifier extends PureComponent<Props, State> {
     if (mgShape === "circle") {
       mgClasses += " circle";
     }
-    //     <div
-    //     style={{
-    //       opacity: this.state.loaded ? 1 : 0,
-    //       transition: "opacity .5s",
-    //     }}
-    //   >
-    //     <img
-    //       className="gallery-image"
-    //       {...thumbnailProps}
-    //       onLoad={(e) => this.setState({ loaded: true })}
-    //     />
-    //   </div>
+
     return (
       <div
         className={`magnifier ${className}`}

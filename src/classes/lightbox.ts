@@ -53,6 +53,5 @@ export class LightBoxData {
     this.startImageIndex = this.images
       .map((img) => img.src)
       .indexOf(clickedImgSrc);
-    console.log(this.startImageIndex);
   }
 }

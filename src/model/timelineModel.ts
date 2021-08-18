@@ -89,7 +89,6 @@ const timelineModel: TimelineModel = {
       actions.setEventSpreadsheet(typedEventRows);
       const timelineSeries = makeTimelineTimeSeries(typedEventRows);
       actions.setTimelineSeries(timelineSeries);
-      console.log(rawEventRowValues);
     }
   ),
 };
@@ -100,9 +99,9 @@ export default timelineModel;
 function typeEventRows(rows: any[]): EventRowValues[] {
   rows.forEach((r: any, ind: number) => {
     const categoryString: string = rows[ind]["category"];
-    const type_cat: EventLevel =
+    const eventCategoryEnum: EventLevel =
       EventLevel[categoryString as unknown as keyof typeof EventLevel];
-    rows[ind]["category"] = type_cat;
+    rows[ind]["category"] = eventCategoryEnum;
     const startDate = new Date(rows[ind]["start"]);
     const endDate = new Date(rows[ind]["end"]);
     rows[ind]["start"] = startDate;
@@ -117,6 +116,7 @@ function makeTimelineTimeSeries(rows: EventRowValues[]): TimelineData {
   Object.keys(categorizedEvents).forEach((key) => {
     const value: EventRowValues[] = categorizedEvents[key];
     const events = eventRowsToTimeRangeEvents(value);
+    // console.log(events);
     const series = timeRangeEventsToTimeSeries(events);
     categorizedEvents[key] = series;
   });
@@ -142,7 +142,7 @@ function timeRangeEventsToTimeSeries(events: TimeRangeEvent[]): TimeSeries[] {
   timeRangeData[0] = [];
   (events as TimeRangeEvent[]).forEach(
     (ev2: TimeRangeEvent, ind: number, array: TimeRangeEvent[]) => {
-      let row_count = 0;
+      let rowCount = 0;
       if (
         array.every((e3) => {
           if (ev2 === e3) {
@@ -157,9 +157,9 @@ function timeRangeEventsToTimeSeries(events: TimeRangeEvent[]): TimeSeries[] {
           }
         })
       ) {
-        timeRangeData[row_count].push(ev2);
+        timeRangeData[rowCount].push(ev2);
       } else {
-        row_count = row_count + 1;
+        rowCount = rowCount + 1;
         timeRangeData[ind] = [ev2];
       }
     }

@@ -53,6 +53,7 @@ const Timeline = (): JSX.Element => {
     Object.values(timeSeries).forEach((f) => {
       tot += f.length;
     });
+    console.log(timeSeries);
     const separators: Separator[] = [];
     const keys = Object.keys(timeSeries);
 
@@ -109,7 +110,6 @@ const Timeline = (): JSX.Element => {
     },
   };
 
-  // const timerange = new TimeRange(startDate, endDate);
   const makeTimeSeriesArr = (
     series: TimeSeries[],
     theme: Theme,
@@ -127,25 +127,27 @@ const Timeline = (): JSX.Element => {
           opacity: 1.0,
           fontFamily: theme.typography.fontFamily,
         };
-        switch (state) {
-          case "hover":
-            style = {
-              fill: theme.palette.divider,
-              ...sharedStyle,
-            };
-            break;
-          case "selected":
-            style = {
-              fill: theme.palette.primary.dark,
-              ...sharedStyle,
-            };
-            break;
-          default:
-            style = baseEventStyle;
-        }
+        // switch (state) {
+        //   case "hover":
+        //     style = {
+        //       fill: theme.palette.divider,
+        //       ...sharedStyle,
+        //     };
+        //     break;
+        //   case "selected":
+        //     style = {
+        //       fill: theme.palette.primary.dark,
+        //       ...sharedStyle,
+        //     };
+        //     break;
+        //   default:
+        //     style = baseEventStyle;
+        // }
+        style = baseEventStyle;
         //light color for the selected events
         if (s.data().first().get("title") === selectedEvent) {
-          console.log("got selected");
+          // console.log("got selected");
+          console.log(selectedEvent);
           style = {
             fill: theme.palette.primary.light,
             opacity: 1.0,
@@ -155,6 +157,9 @@ const Timeline = (): JSX.Element => {
         return style;
       }
       function getEventTitle(e: any) {
+        // console.log(e);
+        // console.log(e.data());
+
         return e.data().first().get("title");
       }
       function handleClick(e: any) {

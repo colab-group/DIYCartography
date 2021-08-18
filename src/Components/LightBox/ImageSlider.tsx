@@ -8,7 +8,10 @@ interface ImagerSliderProps {
   images: LightboxImage[];
   startImageIndex: number;
 }
-const ImageSlider = ({ images, startImageIndex }: ImagerSliderProps) => {
+const ImageSlider = ({
+  images,
+  startImageIndex,
+}: ImagerSliderProps): JSX.Element => {
   const theme = useTheme();
 
   const slickSlide = {

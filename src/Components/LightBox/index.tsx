@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ReactDom from "react-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -17,7 +16,6 @@ const LightBox = ({ show, onClick }: LightBoxProps): JSX.Element => {
   const activeLightbox = useStoreState(
     (state) => state.studentsModel.activeLightBoxData
   );
-  useEffect(() => {}, [activeLightbox.author]);
 
   const galleryStyle = {
     height: "100%",
