@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>JSDoc: Source: model/map_data.ts</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
 
-<body>
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: model/map_data.ts</h1>
 
-<div id="main">
-
-    <h1 class="page-title">Source: model/map_data.ts</h1>
-
-    
-
-
-
-    
-    <section>
+      <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {
+          <pre class="prettyprint source linenums"><code>import {
   Action,
   action,
   thunk,
@@ -196,9 +193,9 @@ const map_data: MapDataModel = {
   activeImages: [],
   filterFunction: (gi: GalleryImage) => true,
   computedActiveImages: computed((state) => {
-    console.log(state.filterFunction);
+     
     let active = state.computed_all_gallery_images.filter(state.filterFunction);
-    console.log(active);
+     
     return active;
   }),
   rawStudentSheets: [],
@@ -219,13 +216,13 @@ const map_data: MapDataModel = {
   }),
   processRawStudentSheets: thunk(async (actions, payload) => {
     const allRows = payload.flat();
-    console.log(allRows);
+     
     const allStudents = allRows.map((r) => new StudentClass(r));
-    console.log(allStudents);
+     
     const resizeReq = allStudents.map((s) =>
       s.request_gallery_thumbnail(SeriesId.series0101)
     );
-    console.log(resizeReq);
+     
     Promise.all(resizeReq).then((imgs) => {
       const newStudents: StudentClass[] = [];
       imgs.forEach((img, i) => {
@@ -234,9 +231,9 @@ const map_data: MapDataModel = {
           newStudents.push(allStudents[i]);
         }
       });
-      console.log(newStudents);
+       
       const studentStats = new StudentStats(newStudents);
-      console.log(studentStats);
+       
       actions.set_all_students(newStudents);
       actions.set_StudentStats(studentStats);
     });
@@ -245,7 +242,7 @@ const map_data: MapDataModel = {
     state.studentStats = payload;
   }),
   set_filter_function: action((state, payload) => {
-    console.log("setting filter func");
+     
     state.filterFunction = payload;
   }),
   computed_all_gallery_images: computed((state) => {
@@ -282,10 +279,10 @@ const map_data: MapDataModel = {
       (student_sheet: (void | GoogleSheet&lt;RawStudentRowValues>)[]) => {
         student_sheet.forEach((sheet_payload) => {
           if (sheet_payload) {
-            console.log(sheet_payload);
+             
             const raw_student_values = sheet_payload.data;
             if (Array.isArray(raw_student_values)) {
-              console.log(raw_student_values);
+               
               actions.addStudentSheetRawData(
                 raw_student_values as RawStudentRowValues[]
               );
@@ -308,7 +305,7 @@ const map_data: MapDataModel = {
     if (arraysEqual(filter_result.filters, debug(state.filter))) {
       state.filter = [];
       state.activeImages = state.galleryImages;
-      console.log("got the same filte ");
+       
     } else {
       state.activeImages = state.galleryImages.filter(
         filter_result.filter_func
@@ -320,9 +317,9 @@ const map_data: MapDataModel = {
     state.timelineSeries = timeline_series;
   }),
   set_group_filter: action((state, group_filter) => {
-    console.log("setting group filter", group_filter);
+     
     if (state.groupFilter === group_filter) {
-      console.log("GOT SAME");
+       
       state.groupFilter = FilterGroup.NONE;
       state.filter = [];
     } else {
@@ -330,7 +327,7 @@ const map_data: MapDataModel = {
     }
   }),
   thunkSetFilter: thunk((actions, filter) => {
-    console.log("doing thunk set filter");
+     
     let group_options = Object.values(FilterGroup);
 
     if (group_options.includes(filter as FilterGroup)) {
@@ -345,16 +342,16 @@ const map_data: MapDataModel = {
     }
   }),
   set_active_filter: action((state, active_filter) => {
-    console.log(active_filter);
+     
     state.filter = active_filter;
   }),
   set_lightboxData: action((state, item) => {
-    console.log(item);
+     
     const tag_data: MapMetadata = item.tags[0];
     const selected_student = state.studentsClass.filter(
       (s) => s.author === tag_data.author
     )[0];
-    console.log(debug(selected_student));
+     
     state.lightBoxData.set_student(selected_student);
   }),
   set_loaded: action((state, is_loaded) => {
@@ -496,16 +493,16 @@ function get_group_filter(f: FilterOption): FilterResult {
 
 function make_time_series(rows: EventRowValues[]): TimelineData {
   const categorized_events = groupBy(rows, "category");
-  console.log(categorized_events);
+   
   Object.keys(categorized_events).forEach((key) => {
-    console.log(key);
+     
     const value: EventRowValues[] = categorized_events[key];
     const events = event_rows_to_time_range_events(value);
     const series = time_range_events_to_time_series(events);
     categorized_events[key] = series;
-    console.log(series);
+     
   });
-  console.log(categorized_events);
+   
   return categorized_events;
 }
 
@@ -513,7 +510,7 @@ function event_rows_to_time_range_events(
   rows: EventRowValues[]
 ): TimeRangeEvent[] {
   let all_events: TimeRangeEvent[] = [];
-  console.log(rows);
+   
   rows.forEach((event_row: EventRowValues) => {
     const time_range = new TimeRange(event_row.start, event_row.end);
     const time_range_event = new TimeRangeEvent(time_range, [
@@ -521,7 +518,7 @@ function event_rows_to_time_range_events(
     ]);
     all_events.push(time_range_event);
   });
-  console.log(all_events);
+   
   return all_events;
 }
 
@@ -532,7 +529,7 @@ function time_range_events_to_time_series(
   // let array_set: { [key: string]: any[] } = {};
   // let row_count = 0;
   // for (let index = 0; index &lt; events.length; index++) {
-  //   console.log(index);
+  //    
   //   const element = events[index];
   //   if (Array.isArray(array_set[`row_${row_count}`]) == false) {
   //     array_set[`row_${row_count}`] = [];
@@ -557,8 +554,8 @@ function time_range_events_to_time_series(
   //     row_count += 1;
   //     array_set[`row_${row_count}`].push(element);
   //   }
-  //   console.log(test);
-  //   console.log(array_set);
+  //    
+  //    
   //   // if (
   //   //   array_set[`row_${row_count}`].every(
   //   //     (d: TimeRangeEvent) =>
@@ -570,17 +567,17 @@ function time_range_events_to_time_series(
   //   //       ) == false
   //   //   )
   //   // ) {
-  //   //   console.log("no overlap, going to push");
+  //   //    
   //   //   array_set[`row_${row_count}`].push(element);
-  //   //   console.log(array_set);
+  //   //    
   //   // } else {
-  //   //   // console.log("GOT overlap, MAKE NEW ROW");
+  //   //   //  
   //   //   // row_count += 1;
   //   //   // array_set[`row_${row_count}`].push(element);
   //   // }
   //   // }
   // }
-  // console.log(array_set);
+  //  
   let test_obj: any = {};
   test_obj[0] = [];
   (events as TimeRangeEvent[]).forEach(
@@ -594,10 +591,10 @@ function time_range_events_to_time_series(
           if (
             date_range_overlaps(e3.begin(), e3.end(), ev2.begin(), ev2.end())
           ) {
-            // console.log("ranges do overlap");
+            //  
             return false;
           } else {
-            // console.log("ranges do not overlap");
+            //  
             return true;
           }
         })
@@ -757,24 +754,63 @@ function filter_group_to_set(group_enum: FilterGroup): FilterOption[] {
 export default map_data;
 </code></pre>
         </article>
-    </section>
+      </section>
+    </div>
 
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Classes</h3>
+      <ul>
+        <li><a href="LegendItem.html">LegendItem</a></li>
+        <li><a href="module.exports.html">exports</a></li>
+        <li><a href="Styler.html">Styler</a></li>
+      </ul>
+      <h3>Interfaces</h3>
+      <ul>
+        <li><a href="GalleryImage.html">GalleryImage</a></li>
+        <li><a href="GoogleSheet.html">GoogleSheet</a></li>
+      </ul>
+      <h3>Global</h3>
+      <ul>
+        <li>
+          <a href="global.html#componentWillReceiveProps"
+            >componentWillReceiveProps</a
+          >
+        </li>
+        <li><a href="global.html#handleClick">handleClick</a></li>
+        <li>
+          <a href="global.html#handleTimeRangeChanged"
+            >handleTimeRangeChanged</a
+          >
+        </li>
+        <li><a href="global.html#Label">Label</a></li>
+        <li><a href="global.html#latestScale">latestScale</a></li>
+        <li><a href="global.html#onMouseLeave">onMouseLeave</a></li>
+        <li><a href="global.html#onMouseOver">onMouseOver</a></li>
+        <li><a href="global.html#pathStyle">pathStyle</a></li>
+        <li><a href="global.html#providedStyle">providedStyle</a></li>
+        <li><a href="global.html#scaleAsString">scaleAsString</a></li>
+        <li><a href="global.html#scaler">scaler</a></li>
+        <li><a href="global.html#setScale">setScale</a></li>
+        <li><a href="global.html#style">style</a></li>
+        <li><a href="global.html#styleMode">styleMode</a></li>
+        <li><a href="global.html#transition">transition</a></li>
+        <li><a href="global.html#ValueAxis">ValueAxis</a></li>
+        <li><a href="global.html#ValueList">ValueList</a></li>
+      </ul>
+    </nav>
 
+    <br class="clear" />
 
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03
+      2021 20:43:44 GMT-0400 (Eastern Daylight Time)
+    </footer>
 
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LegendItem.html">LegendItem</a></li><li><a href="module.exports.html">exports</a></li><li><a href="Styler.html">Styler</a></li></ul><h3>Interfaces</h3><ul><li><a href="GalleryImage.html">GalleryImage</a></li><li><a href="GoogleSheet.html">GoogleSheet</a></li></ul><h3>Global</h3><ul><li><a href="global.html#componentWillReceiveProps">componentWillReceiveProps</a></li><li><a href="global.html#handleClick">handleClick</a></li><li><a href="global.html#handleTimeRangeChanged">handleTimeRangeChanged</a></li><li><a href="global.html#Label">Label</a></li><li><a href="global.html#latestScale">latestScale</a></li><li><a href="global.html#onMouseLeave">onMouseLeave</a></li><li><a href="global.html#onMouseOver">onMouseOver</a></li><li><a href="global.html#pathStyle">pathStyle</a></li><li><a href="global.html#providedStyle">providedStyle</a></li><li><a href="global.html#scaleAsString">scaleAsString</a></li><li><a href="global.html#scaler">scaler</a></li><li><a href="global.html#setScale">setScale</a></li><li><a href="global.html#style">style</a></li><li><a href="global.html#styleMode">styleMode</a></li><li><a href="global.html#transition">transition</a></li><li><a href="global.html#ValueAxis">ValueAxis</a></li><li><a href="global.html#ValueList">ValueList</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 20:43:44 GMT-0400 (Eastern Daylight Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
 </html>

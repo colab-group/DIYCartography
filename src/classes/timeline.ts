@@ -17,7 +17,6 @@ export class Timeline {
   setData(events: TimelineEvent[]): void {
     const categorizedEvents = groupBy(events, "category");
     Object.keys(categorizedEvents).forEach((key) => {
-      console.log(key);
       const value: TimelineEvent[] = categorizedEvents[key];
       const events = eventRowsToTimeRangeEvents(value);
       const series = timeRangeEventsToTimeSeries(events);

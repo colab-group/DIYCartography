@@ -79,7 +79,7 @@ export default class EventChart extends React.Component {
       const isHover = this.state.hover
         ? Event.is(event, this.state.hover)
         : false;
-      // console.log()
+      //
       let state;
       if (isHover) {
         state = "hover";

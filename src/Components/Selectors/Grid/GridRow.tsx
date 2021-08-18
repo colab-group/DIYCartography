@@ -1,6 +1,5 @@
 import { useStoreActions, useStoreState } from "../../../hooks";
-import { useTheme } from "@material-ui/core/styles";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import GridUnit from "./GridUnit";
 import { MapSubTopic } from "../../../enums";
 import { FilterOption } from "../../../model/types";
@@ -12,30 +11,14 @@ interface GridRowProps {
   icon: JSX.Element;
 }
 
-const GridRow = ({ count, icon, filterCode }: GridRowProps) => {
-  const theme = useTheme();
+const GridRow = ({ count, icon, filterCode }: GridRowProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
   const activeFilterState = useStoreState(
     (state) => state.studentsModel.filter
   );
-  // const activeGroupFilterState = useStoreState(
-  //   (state) => state.studentsModel.groupFilterp
-  // );
   const setFilterAction = useStoreActions(
     (actions) => actions.studentsModel.thunkSetFilter
   );
-
-  useEffect(() => {}, [activeFilterState]);
-  const setRowColor = (
-    currentFilter: FilterOption[],
-    rowIsHovered: boolean
-  ) => {
-    if (currentFilter.some((f) => f == filterCode)) {
-      return 4;
-    } else {
-      return rowIsHovered ? -1 : 0;
-    }
-  };
 
   const rowGridStyle = {
     width: "100%",
@@ -56,7 +39,6 @@ const GridRow = ({ count, icon, filterCode }: GridRowProps) => {
         onMouseEnter={() => setIsHovered(!isHovered)}
         onMouseLeave={() => setIsHovered(!isHovered)}
         onMouseUp={() => {
-          // setIsHovered(true);
           setFilterAction(filterCode);
         }}
       >

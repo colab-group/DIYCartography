@@ -116,7 +116,7 @@ function makeTimelineTimeSeries(rows: EventRowValues[]): TimelineData {
   Object.keys(categorizedEvents).forEach((key) => {
     const value: EventRowValues[] = categorizedEvents[key];
     const events = eventRowsToTimeRangeEvents(value);
-    // console.log(events);
+    //
     const series = timeRangeEventsToTimeSeries(events);
     categorizedEvents[key] = series;
   });
@@ -149,10 +149,8 @@ function timeRangeEventsToTimeSeries(events: TimeRangeEvent[]): TimeSeries[] {
             return true;
           }
           if (dateRangeOverlaps(e3.begin(), e3.end(), ev2.begin(), ev2.end())) {
-            // console.log("ranges do overlap");
             return false;
           } else {
-            // console.log("ranges do not overlap");
             return true;
           }
         })

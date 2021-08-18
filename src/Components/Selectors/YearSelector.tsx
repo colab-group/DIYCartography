@@ -12,7 +12,7 @@ function toAuthorEnum(
   year: string
 ): AuthorDisciplineFilter {
   const filterString = discipline + "_" + year;
-  console.log(filterString);
+   
   return AuthorDisciplineFilter[
     filterString as unknown as keyof typeof AuthorDisciplineFilter
   ];

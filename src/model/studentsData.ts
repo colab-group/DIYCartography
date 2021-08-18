@@ -145,12 +145,10 @@ const studentsData: MapDataModel = {
     state.studentsClass = payload;
   }),
   fetchStudentSheets: thunk(async (actions, _payload) => {
-    // const key = process.env.REACT_APP_API_KEY as string;
-    const xxTest = GoogleSheetData.prototype
+    GoogleSheetData.prototype
       .loadSheets(SHEET_KEY, process.env.REACT_APP_API_KEY as string)
       .then((response) => {
         Promise.all(response).then((responseData) => {
-          console.log(responseData);
           const studentsGoogleSheet = new GoogleSheetData(
             "Students Sheet",
             SHEET_KEY,
@@ -188,7 +186,7 @@ const studentsData: MapDataModel = {
           });
           actions.processRawStudentSheets([convertedStudents]);
           actions.setStudentGoogleSheets(studentsGoogleSheet);
-          // console.log(allStudents);
+          //
         });
       });
   }),

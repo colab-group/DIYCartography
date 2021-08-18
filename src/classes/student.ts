@@ -60,8 +60,8 @@ export class StudentClass {
   getLightboxImages(): LightboxImage[] {
     const lightBoxImageArr: LightboxImage[] = [];
     for (const elem of this.imageData.entries()) {
-      // console.log(this.imageData);
-      console.log(elem);
+      //
+
       if (elem[1]) {
         const newImg = {
           title: elem[0],
@@ -97,7 +97,6 @@ export class StudentClass {
                 ],
               subtopic:
                 MapSubTopic[
-                  // (single_row.tags + "_" +
                   this.subtopic as unknown as keyof typeof MapSubTopic
                 ],
               theme:
@@ -121,11 +120,11 @@ export class StudentClass {
       if (Object.keys(SeriesId).includes(key)) {
         const keyTyped = key as keyof typeof row;
         if (row[keyTyped] !== "NA") {
-          const new_pair: [SeriesId, string] = [
+          const newImageDataArr: [SeriesId, string] = [
             SeriesId[key as unknown as keyof typeof SeriesId],
             row[keyTyped] as string,
           ];
-          pairArr.push(new_pair);
+          pairArr.push(newImageDataArr);
         }
       }
     }

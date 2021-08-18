@@ -12,7 +12,6 @@ class Image extends Component {
     };
   }
   handleImageLoaded() {
-    console.log("LOADED IMAGE");
     this.setState({ hover: false, loaded: false });
   }
 
@@ -342,7 +341,6 @@ Image.defaultProps = {
 export default Image;
 
 const MyImage = ({ imgProps }) => {
-  console.log(imgProps);
   const { src, alt, title } = imgProps;
   return <SmoothImage src={src} alt={alt}></SmoothImage>;
 };

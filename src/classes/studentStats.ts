@@ -27,7 +27,7 @@ function getYearBreakdown(students: StudentClass[]) {
       value as StudentClass[],
       (s) => s.discipline
     );
-    // console.log(studentsByDiscipline);
+    //
     const disciplines = [
       AuthorDisciplineFilter.ARTDESIGN,
       AuthorDisciplineFilter.ARCHITECTURE,

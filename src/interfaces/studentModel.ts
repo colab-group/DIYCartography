@@ -42,7 +42,7 @@ export function getSheet<T>(
 //   try {
 //     return await fetch(url);
 //   } catch (err) {
-//     console.log("got fetch retry error");
+//
 //     if (n === 1) throw err;
 //     return await setTimeout(()=>PfetchRetry(url, n - 1);
 //   }

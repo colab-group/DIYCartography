@@ -8,6 +8,7 @@
   height: auto;
   min-height: 1px;
   padding-right: 1em;
+  border-right: 1em solid black;
 }
 
 .slick-slide img {

@@ -20,9 +20,9 @@ export const Grid = ({ rows, cols }: GridProps) => {
         </div>
       );
     });
-    console.log(arr);
+
     const fin = arr.map((r, i) => i);
-    console.log(fin);
+
     return arr;
   }
 
