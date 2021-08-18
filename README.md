@@ -12,7 +12,7 @@ Students examine their local geographies through a combination of expressive aes
 This website offers NCSU design college an opportunity to display innovative work by students for recruitment and engagement in an accessible manner, and provides
 inspiration and reference for future classes.
 
-![Screenshot](.github\images\demo.png)
+![Screenshot](https://github.com/colab-group/DIYCartography/blob/master/.github/images/demo.PNG?raw=true)
 
 Live demo:
 [https://studentmapdisplay.web.app/](https://studentmapdisplay.web.app/)
