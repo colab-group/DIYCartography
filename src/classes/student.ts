@@ -60,11 +60,15 @@ export class StudentClass {
   getLightboxImages(): LightboxImage[] {
     const lightBoxImageArr: LightboxImage[] = [];
     for (const elem of this.imageData.entries()) {
-      const newImg = {
-        title: elem[0],
-        src: elem[1] as string,
-      };
-      lightBoxImageArr.push(newImg);
+      // console.log(this.imageData);
+      console.log(elem);
+      if (elem[1]) {
+        const newImg = {
+          title: elem[0],
+          src: elem[1] as string,
+        };
+        lightBoxImageArr.push(newImg);
+      }
     }
     return lightBoxImageArr;
   }
