@@ -12,6 +12,8 @@ Students examine their local geographies through a combination of expressive aes
 This website offers NCSU design college an opportunity to display innovative work by students for recruitment and engagement in an accessible manner, and provides
 inspiration and reference for future classes.
 
+![Screenshot](.github\images\AppScreenShot.PNG)
+
 Live demo:
 [https://studentmapdisplay.web.app/](https://studentmapdisplay.web.app/)
 
@@ -21,7 +23,7 @@ Live demo:
 
 ```
 git clone https://github.com/wyhinton/DIYCartographyDisplay.git
-cd DIYCartographyDisplay
+cd DIYCartography
 ```
 
 2. Install yarn dependencies
@@ -39,7 +41,7 @@ yarn start
 ## App Design
 
 - Google Sheets backend, and Google Photos for image hosting
-- Centralized state management provided via an [easy-peasy](https://easy-peasy.vercel.app/) store
+- Centralized state management is provided via an [easy-peasy](https://easy-peasy.vercel.app/) store
 
 ## Maintenance
 
