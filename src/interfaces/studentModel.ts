@@ -1,6 +1,5 @@
 import { EventLevel } from "../enums";
 import GetSheetDone from "get-sheet-done";
-import { GoogleSpreadsheet } from "google-spreadsheet";
 export interface EventRowValues {
   start: Date;
   end: Date;
@@ -38,15 +37,6 @@ export function getSheet<T>(
   });
 }
 
-// const fetchRetry = async (url: string, n: number): Promise<Response> => {
-//   try {
-//     return await fetch(url);
-//   } catch (err) {
-//
-//     if (n === 1) throw err;
-//     return await setTimeout(()=>PfetchRetry(url, n - 1);
-//   }
-// };
 const fetchRetry = async (
   url: string,
   retries: number,
@@ -69,21 +59,3 @@ const fetchRetry = async (
     })
     .catch(console.error);
 };
-
-// const fetchRetry = async (url: string, n: number): Promise<Response> => {
-//   try {
-//       const response = await fetch(url, options);
-
-//       if(!response.ok) {
-//           throw new Error("Invalid response.");
-//       }
-//       return response;
-
-//   } catch (error) {
-//       if (attempt <= 1) {
-//           throw error;
-//       }
-//       await sleep(2000);
-//       return fetchRetry(url, attempt - 1);
-//   }
-// };

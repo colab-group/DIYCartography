@@ -51,9 +51,9 @@ yarn start
    1. Upload the maps to the diycartography@gmail.com Google Photos account
    2. Hit the "Add Sheet button" on our active Google Sheet. Using the exact same format for years 2016/2018/2020, Input all the data for the students into the new sheet. Make sure to fill any empty values with an "NA".
 2. **Update Source Code**
-   1. Add the new sheet to the pool of requested sheets
-   2. Add new enum variants for the class year to the `AuthorDisciplineFilter` and `FilterGroup` enums
-   3. Add a new section to the Toolbar component
+   1. Add the new sheet to the pool of requested sheets [1](https://github.com/colab-group/DIYCartography/blob/74a1cd452c88d1f831b25a9892477567efce241f/src/model/studentsData.ts#L161)
+   2. Add new enum variants for the class year to the `AuthorDisciplineFilter` and `FilterGroup` enums [1](https://github.com/colab-group/DIYCartography/blob/74a1cd452c88d1f831b25a9892477567efce241f/src/enums.ts#L10) [2](https://github.com/colab-group/DIYCartography/blob/74a1cd452c88d1f831b25a9892477567efce241f/src/enums.ts#L49)
+   3. Add a new section to the Toolbar component [1](https://github.com/colab-group/DIYCartography/blob/74a1cd452c88d1f831b25a9892477567efce241f/src/Components/Selectors/YearSelector.tsx#L90)
 3. **Build + Deploy**
    1. A github action is set up to build, then deploy the build, to Firebase hosting. This action is triggered when pushing to the repo. So just run `git add .`, `git commit -m 'my update'`, `git push`, and you should see the action boot up.
 
