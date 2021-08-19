@@ -14,9 +14,6 @@ inspiration and reference for future classes.
 
 ![Screenshot](https://github.com/colab-group/DIYCartography/blob/master/.github/images/demo.PNG?raw=true)
 
-Live demo:
-[https://studentmapdisplay.web.app/](https://studentmapdisplay.web.app/)
-
 ## Quick Start
 
 1. Clone the repository and change directory.
