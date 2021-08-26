@@ -53,7 +53,7 @@ const Timeline = (): JSX.Element => {
     Object.values(timeSeries).forEach((f) => {
       tot += f.length;
     });
-     
+
     const separators: Separator[] = [];
     const keys = Object.keys(timeSeries);
 
@@ -123,31 +123,9 @@ const Timeline = (): JSX.Element => {
 
       function getEventMarkerStyle(s: any, state: any) {
         let style: React.CSSProperties;
-        const sharedStyle = {
-          opacity: 1.0,
-          fontFamily: theme.typography.fontFamily,
-        };
-        // switch (state) {
-        //   case "hover":
-        //     style = {
-        //       fill: theme.palette.divider,
-        //       ...sharedStyle,
-        //     };
-        //     break;
-        //   case "selected":
-        //     style = {
-        //       fill: theme.palette.primary.dark,
-        //       ...sharedStyle,
-        //     };
-        //     break;
-        //   default:
-        //     style = baseEventStyle;
-        // }
+
         style = baseEventStyle;
-        //light color for the selected events
         if (s.data().first().get("title") === selectedEvent) {
-          //  
-           
           style = {
             fill: theme.palette.primary.light,
             opacity: 1.0,
@@ -157,9 +135,6 @@ const Timeline = (): JSX.Element => {
         return style;
       }
       function getEventTitle(e: any) {
-        //  
-        //  
-
         return e.data().first().get("title");
       }
       function handleClick(e: any) {

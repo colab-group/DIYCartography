@@ -45,7 +45,7 @@ const EventInfoDisplay = ({ info }: EventInfoDisplayProps): JSX.Element => {
         autoHeightMin={0}
         autoHeightMax={400}
         autoHide
-        style={{ width: "100%", height: 500 }}
+        style={{ width: "100%", height: 150 }}
       >
         <Text style={infoHeaderStyle}>
           <Paragraph

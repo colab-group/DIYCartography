@@ -1,9 +1,4 @@
-import { info } from "fp-ts/lib/Console";
-import {
-  GoogleSpreadsheet,
-  GoogleSpreadsheetRow,
-  GoogleSpreadsheetWorksheet,
-} from "google-spreadsheet";
+import { GoogleSpreadsheet, GoogleSpreadsheetRow } from "google-spreadsheet";
 
 export default class GoogleSheetData {
   title!: string;
