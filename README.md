@@ -5,7 +5,7 @@
 
 ![College of Design](/.github/images/cod.jpg)
 
-# 🗺️ Mapping Urban Change: DIY Cartography
+# 🗺️ [Mapping Urban Change: DIY Cartography](go.ncsu.edu/diycartography)
 
 Interactive display and archive of students' work from NCSU's Art and Design course, DIY Cartography. Includes a dynamic timeline and sortable database of student-made maps of North Carolina, Wake County, and Raleigh.
 Students examine their local geographies through a combination of expressive aesthetics, infographics, collage, and historical research.
